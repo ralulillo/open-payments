@@ -1,0 +1,1 @@
+Get-Content .\OP_DTL_RSRCH_PGYR2016_P06292018.csv -First 10000 >> .\zzz.txt
