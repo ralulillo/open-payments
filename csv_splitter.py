@@ -1,3 +1,8 @@
+# This script allows you to split a text file into several smaller pieces.
+# You can find the original source at https://gist.github.com/jrivero/1085501
+# It has been slightly adapted to split Open Payment files
+# https://www.cms.gov/OpenPayments/Explore-the-Data/Dataset-Downloads.html
+
 import os
 
 
@@ -11,7 +16,7 @@ def split(filehandler, row_limit=10000,
         output_name_template % current_piece
     )
     current_out_writer = open(current_out_path, 'wb')
-
+    
     i = 0
     with filehandler as f:
         for line in f:
@@ -34,9 +39,11 @@ def split(filehandler, row_limit=10000,
                 current_out_writer.write(line.encode('utf8'))
             i += 1
 
-ruta = 'C:\\Users\\ratan\\Desktop\\RAUL\\datos'
-f_in = 'OP_DTL_GNRL_PGYR2017_P06292018'
-ext_in = '.csv'
+
+
+ruta = 'C:\\Users\\ratan\\Desktop\\RAUL\\datos' # your path
+f_in = 'OP_DTL_GNRL_PGYR2017_P06292018' # your file
+ext_in = '.csv' # your extension
 f_out = f_in + '_%02d' + ext_in
 split(open(ruta + '\\' + f_in + ext_in, 'r', encoding='utf-8'),
       row_limit=500000, output_name_template=f_out, output_path=ruta)
